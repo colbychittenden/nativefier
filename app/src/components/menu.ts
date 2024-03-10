@@ -284,34 +284,6 @@ export function generateMenu(
     ],
   };
 
-  const helpMenu: MenuItemConstructorOptions = {
-    label: '&Help',
-    role: 'help',
-    submenu: [
-      {
-        label: `Built with Nativefier v${nativefierVersion}`,
-        click: (): void => {
-          openExternal('https://github.com/nativefier/nativefier').catch(
-            (err: unknown): void =>
-              log.error(
-                'Built with Nativefier v${nativefierVersion}.click ERROR',
-                err,
-              ),
-          );
-        },
-      },
-      {
-        label: 'Report an Issue',
-        click: (): void => {
-          openExternal('https://github.com/nativefier/nativefier/issues').catch(
-            (err: unknown): void =>
-              log.error('Report an Issue.click ERROR', err),
-          );
-        },
-      },
-    ],
-  };
-
   let menuTemplate: MenuItemConstructorOptions[];
 
   if (isOSX()) {
@@ -359,9 +331,9 @@ export function generateMenu(
         role: 'front',
       },
     );
-    menuTemplate = [electronMenu, editMenu, viewMenu, windowMenu, helpMenu];
+    menuTemplate = [electronMenu, editMenu, viewMenu, windowMenu];
   } else {
-    menuTemplate = [editMenu, viewMenu, windowMenu, helpMenu];
+    menuTemplate = [editMenu, viewMenu, windowMenu];
   }
 
   return menuTemplate;
